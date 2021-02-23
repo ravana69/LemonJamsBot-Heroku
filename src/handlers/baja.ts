@@ -5,7 +5,7 @@ export const playHandler = Composer.command('baja', async ctx => {
     const { chat } = ctx.message;
 
     if (chat.type !== 'supergroup') {
-        await ctx.reply('Mai sirf group mei hi bajti hoon.');
+        await ctx.reply('I can only play in groups.');
         return;
     }
 
@@ -13,11 +13,26 @@ export const playHandler = Composer.command('baja', async ctx => {
     const text = ctx.message.text.slice(commandEntity.length + 1);
 
     if (!text) {
-        await ctx.reply('Lenk toh dedo bhabhi.');
+        await ctx.reply('You need to specify a YouTube URL.');
         return;
     }
 
     const index = await addToQueue(chat, text);
 
-    await ctx.reply(index === 0 ? 'Bhabhi Gaana baj raha hai.' : `${index} ashiq already hai mere.`);
+    let message;
+
+    switch (index) {
+        case -1:
+            message = 'Failed to download song.';
+            break;
+
+        case 0:
+            message = 'Playing.';
+            break;
+
+        default:
+            message = `Queued at position ${index}.`;
+    }
+
+    await ctx.reply(message);
 });
