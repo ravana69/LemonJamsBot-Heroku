@@ -2,7 +2,7 @@ import { bot } from '../bot';
 
 import { playHandler } from './baja';
 import { queueHandler } from './dikha';
-import { songHandler } from './song';
+import { songHandler } from './khol';
 import { pauseHandler } from './ruk';
 import { skipHandler } from './nikal';
 
