@@ -5,7 +5,7 @@ export const playHandler = Composer.command('baja', async ctx => {
     const { chat } = ctx.message;
 
     if (chat.type !== 'supergroup') {
-        await ctx.reply('I can only play in groups.');
+        await ctx.reply('Mera maalik mujhe group mei bajate hai full.');
         return;
     }
 
@@ -13,7 +13,7 @@ export const playHandler = Composer.command('baja', async ctx => {
     const text = ctx.message.text.slice(commandEntity.length + 1);
 
     if (!text) {
-        await ctx.reply('You need to specify a YouTube URL.');
+        await ctx.reply('Bhaiya daal do apna link.');
         return;
     }
 
@@ -23,15 +23,15 @@ export const playHandler = Composer.command('baja', async ctx => {
 
     switch (index) {
         case -1:
-            message = 'Failed to download song.';
+            message = 'aare bhaiya police aa gaya bhaago.';
             break;
 
         case 0:
-            message = 'Playing.';
+            message = 'aaha maza aa gaya bhaiya.';
             break;
 
         default:
-            message = `Queued at position ${index}.`;
+            message = `${index} aashiq hai mere deevane.`;
     }
 
     await ctx.reply(message);
